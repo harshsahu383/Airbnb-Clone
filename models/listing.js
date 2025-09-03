@@ -1,19 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const listingSchema = new SchemaType({
+const listingSchema = new Schema({
   title: {
     type: String,
-    required:true
+    required: true,
   },
-  description:String,
-  image:{
-    type:String,
-    set: (v) => v === "" ? "default link" : v
-  },
-  price:Number,
-  location:String,
-  country:String
+  description: String,
+  image: String,
+  price: Number,
+  location: String,
+  country: String
 });
 
 const Listing = mongoose.model("Listing", listingSchema);
