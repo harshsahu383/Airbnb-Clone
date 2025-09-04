@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Airbnb</title>
 </head>
 <body>
-    <h2>All Lsitings</h2>
-  <ul>
-    <% listings.forEach(listing => { %>
-      <li>
-        <h2><a href="/listings/<%=listing._id%>"><%= listing.title %></a></h2>
+    <h1>Lisitngs Details</h1>
+     <ul>
+          <li>
+        <h2><%= listing.title %></h2>
         <p><%= listing.description %></p>
         <p>Price: $<%= listing.price %></p>
         <p>Location: <%= listing.location %>, <%= listing.country %></p>
         <!-- <img src="<%= listing.image %>" alt="<%= listing.title %>" width="200"> -->
       </li>
-    <% }) %>
+  
   </ul>
 </body>
 </html>
