@@ -9,11 +9,11 @@
     <h1>Lisitngs Details</h1>
      <ul>
           <li>
-        <h2><%= listing.title %></h2>
-        <p><%= listing.description %></p>
-        <p>Price: $<%= listing.price %></p>
-        <p>Location: <%= listing.location %>, <%= listing.country %></p>
-        <!-- <img src="<%= listing.image %>" alt="<%= listing.title %>" width="200"> -->
+        <h2><%= listings.title %></h2>
+        <p><%= listings.description %></p>
+        <p>Price: &#8377;<%= listings.price.toLocaleString("en-IN") %></p>
+        <p>Location: <%= listings.location %>, <%= listings.country %></p>
+        <!-- <img src="<%= listings.image %>" alt="<%= listings.title %>" width="200"> -->
       </li>
   
   </ul>
