@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<% layout("/layout/boilerplate") %>
 <body>
     <h2>All Lsitings</h2>
     <form action="/listings/new" method="get">
@@ -14,12 +8,11 @@
     <% listings.forEach(listing => { %>
       <li>
         <h2><a href="/listings/<%=listing._id%>"><%= listing.title %></a></h2>
-        <p><%= listing.description %></p>
+        <!-- <p><%= listing.description %></p>
         <p>Price: &#8377; <%= listing.price.toLocaleString("en-IN") %></p>
         <p>Location: <%= listing.location %>, <%= listing.country %></p>
-        <!-- <img src="<%= listing.image %>" alt="<%= listing.title %>" width="200"> -->
+        <img src="<%= listing.image %>" alt="<%= listing.title %>" width="200"> -->
       </li>
     <% }) %>
   </ul>
 </body>
-</html>

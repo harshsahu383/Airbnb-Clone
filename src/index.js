@@ -5,6 +5,7 @@ const express = require("express");
 const Listing = require("../models/listing.js")
 const path = require("path");
 const connectDb = require("../db/index.js");
+const ejsMate = require("ejs-mate");
 const { appendFile, appendFileSync } = require("fs");
 const methodOverride = require("method-override");
 const app = express();
@@ -12,6 +13,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
+app.use(express.static(path.join(__dirname, "../public")));
+app.engine("ejs", ejsMate);
 app.listen(process.env.PORT, (req,res) => {
     console.log("Server Is Running ");
     
@@ -61,4 +64,11 @@ app.put("/listings/:id", async (req, res) => {
   let { id } = req.params;
   await Listing.findByIdAndUpdate(id, { ...req.body.listing });
   res.redirect(`/listings/${id}`);
+});
+//Delete Route
+app.delete("/listings/:id", async (req, res) => {
+  let { id } = req.params;
+  let deletedListing = await Listing.findByIdAndDelete(id);
+  console.log(deletedListing);
+  res.redirect("/listings");
 });
