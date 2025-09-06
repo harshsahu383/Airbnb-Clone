@@ -8,6 +8,7 @@ const connectDb = require("../db/index.js");
 const ejsMate = require("ejs-mate");
 const { appendFile, appendFileSync } = require("fs");
 const methodOverride = require("method-override");
+const ExpressError = require("../ExpressError.js");
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views"));
