@@ -73,5 +73,13 @@ a{
     text-decoration:none;
 }
 .add-btn{
-    color: #fe424d;
+    color: #fe424d !important
+}
+/* Show img */
+.show-img{
+    width: 100vh !important ;
+}
+.btns{
+    display:flex ;
+
 }

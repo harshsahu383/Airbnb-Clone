@@ -1,25 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airbnb</title>
-</head>
-<body>
-    <h1>Lisitngs Details</h1>
-     <ul>
-          <li>
-        <h2><%= listings.title %></h2>
-        <p><%= listings.description %></p>
-        <p>Price: &#8377;<%= listings.price.toLocaleString("en-IN") %></p>
-        <p>Location: <%= listings.location %>, <%= listings.country %></p>
-        <!-- <img src="<%= listings.image %>" alt="<%= listings.title %>" width="200"> -->
-      </li>
-        <a href="/listings/<%= listings._id %>/edit">Edit this Listing</a>
-    <br /><br />
-       <form method="POST" action="/listings/<%=listings._id%>?_method=DELETE">
-      <button>Delete this listing</button>
-    </form>
-  </ul>
-</body>
-</html>
+<% layout("/layout/boilerplate") %>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+
+      <!-- Listing Card -->
+      <div class="card shadow-lg border-0 rounded-3">
+        <img src="<%= listings.image %>" class="card-img-top show-img rounded-top" alt="<%= listings.title %>">
+
+        <div class="card-body">
+          <h3 class="card-title mb-3"><%= listings.title %></h3>
+
+          <p class="card-text text-muted mb-2"><%= listings.description %></p>
+
+          <ul class="list-unstyled mb-3">
+            <li><strong>Price:</strong> &#8377;<%= listings.price.toLocaleString("en-IN") %></li>
+            <li><strong>Location:</strong> <%= listings.location %></li>
+            <li><strong>Country:</strong> <%= listings.country %></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="d-flex justify-content-between mt-4">
+        <a href="/listings/<%= listings._id %>/edit" class="btn btn-warning px-4 ">
+          Edit
+        </a>
+
+        <form method="POST" action="/listings/<%= listings._id %>?_method=DELETE" onsubmit="return confirm('Are you sure you want to delete this listing?');">
+          <button class="btn btn-danger px-4">🗑️ Delete</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
