@@ -9,7 +9,7 @@ const wrapAsync = require("../utils/wrapAsync.js")
 const ejsMate = require("ejs-mate");
 const { appendFile, appendFileSync } = require("fs");
 const methodOverride = require("method-override");
-const ExpressError = require("../ExpressError.js");
+const ExpressError = require("../utils/ExpressError.js");
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views"));
@@ -44,7 +44,10 @@ app.get("/listings/:id", wrapAsync(async (req,res) => {
     res.render("listings/show.ejs", {listings});
 }));
 
-app.post("/listings", wrapAsync(async (req,res) => {
+app.post("/listings", wrapAsync(async (req,res,next) => {
+    if(! req.body.listing){
+        throw new ExpressError(400,"Please Send Valid Response");
+    }
     const newListing =  new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings")
@@ -69,6 +72,12 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
   console.log(deletedListing);
   res.redirect("/listings");
 }));
-app.use((err,req,res,next) =>  {
-res.send("something went wrong")
-})
+app.use((req, res, next) => {
+  next(new ExpressError(404, "Page Not Found !"));
+});
+
+// Centralized error handler
+app.use((err, req, res, next) => {
+  const { statusCode = 500, message = "Something went wrong!" } = err;
+  res.status(statusCode).send(message);
+});
