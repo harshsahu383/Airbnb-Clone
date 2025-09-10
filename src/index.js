@@ -62,7 +62,7 @@ app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
 //Update Route
 app.put("/listings/:id", wrapAsync(async (req, res) => {
   let { id } = req.params;
-  await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+  await Listing.findByIdAndUpdate(id, { ...req.body.listing })
   res.redirect(`/listings/${id}`);
 }));
 //Delete Route
