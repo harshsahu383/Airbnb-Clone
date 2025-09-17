@@ -14,6 +14,7 @@ const methodOverride = require("method-override");
 const ExpressError = require("../utils/ExpressError.js");
 const { getDefaultResultOrder } = require("dns");
 const session = require("express-session");
+const { Session } = require("inspector");
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views"));
@@ -25,6 +26,12 @@ app.listen(process.env.PORT, (req,res) => {
     console.log("Server Is Running ");
     
 })
+const sessionOptions = {
+  secret : "mysecretcode",
+  resave: false,
+  saveUninitialized: true
+}
+app.use(Session(sessionOptions));
 app.get("/", (req,res) => {
     res.send("working ");
 });
