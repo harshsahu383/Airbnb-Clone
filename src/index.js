@@ -5,6 +5,7 @@ const express = require("express");
 const Listing = require("../models/listing.js")
 const {lisitngSchema, listingSchema} = require("../src/schema.js")
 const path = require("path");
+const session = require("express-session");
 const connectDb = require("../db/index.js");
 const wrapAsync = require("../utils/wrapAsync.js")
 const ejsMate = require("ejs-mate");
@@ -12,6 +13,7 @@ const { appendFile, appendFileSync } = require("fs");
 const methodOverride = require("method-override");
 const ExpressError = require("../utils/ExpressError.js");
 const { getDefaultResultOrder } = require("dns");
+const session = require("express-session");
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views"));
