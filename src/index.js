@@ -33,7 +33,7 @@ const sessionOptions = {
 }
 app.use(Session(sessionOptions));
 app.get("/", (req,res) => {
-    res.send("working ");
+    res.send("working ")
 });
 const validateSchema = (req,res,next) => {
       const {error} = listingSchema.validate(req.body);
