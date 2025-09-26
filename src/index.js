@@ -38,8 +38,8 @@ app.get("/", (req,res) => {
 const validateSchema = (req,res,next) => {
       const {error} = listingSchema.validate(req.body);
     if(error){
-        let errMsg = error.details.map((el) => el.message.join(","));
-        throw new ExpressError(404, errMsg);
+        let errMsg = error.details.map((el) => el.message.join(","))
+        throw new ExpressError(404, errMsg)
     }
 }
 
