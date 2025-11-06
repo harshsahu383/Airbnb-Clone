@@ -1,15 +1,102 @@
+
+<style>
+    .search-btn {
+        background-color: #fe424d;
+        color: #fff;
+        border-radius: 25px;
+        padding: 0 1rem 0 1rem;
+    }
+    .search-btn:hover {
+        background-color: #fe424d;
+        color: #fff;
+    }
+    .search-btn i {
+        display: inline;
+        margin-right: 0.5rem;
+    }
+    .search-inp {
+        border-radius: 25px;
+        padding: 0.5rem 3rem 0.5rem 3rem;
+        font-size: 1rem;
+    }
+
+    .navbar-collapse {
+        background-color: white !important; /* or any solid color you prefer */
+    }
+
+    .dropdown-menu {
+        background-color: white !important; /* ensures dropdown is also solid */
+        border: 1px solid #ccc;
+    }
+</style>
+
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link " aria-current="page" href="/">Home</a>
-        <a class="nav-link" href="/listings">All Listing</a>
-        <a class="nav-link" href="/listings/new">Create New Listing</a>
-      </div>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+        <button 
+            class="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarNavAltMarkup"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <!-- Left nav -->
+            <div class="navbar-nav">
+                <a class="nav-link" href="/listings">Explore</a>
+            </div>
+
+            <!-- Search (always visible) -->
+            <div class="navbar-nav ms-auto">
+                <form class="d-flex" role="search">
+                    <input 
+                        class="form-control me-2 search-inp" 
+                        type="search" 
+                        placeholder="Search destinations" 
+                    />
+                    <button class="btn search-btn" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>Search
+                    </button>
+                </form>
+            </div>
+
+            <!-- Desktop Links -->
+            <div class="navbar-nav ms-auto d-none d-md-flex">
+                <a class="nav-link" href="/listings/new">Airbnb your home</a>
+                <% if(!currUser) { %>
+                    <a class="nav-link" href="/signup"><b>Sign up</b></a>
+                    <a class="nav-link" href="/login"><b>Log in</b></a>
+                <% } %>
+                <% if(currUser) { %>
+                    <a class="nav-link" href="/logout"><b>Log out</b></a>
+                <% } %>
+            </div>
+
+            <!-- Mobile Dropdown -->
+            <div class="navbar-nav d-md-none mt-2">
+                <div class="dropdown w-100">
+                    <button 
+                        class="btn btn-outline-secondary dropdown-toggle w-100" 
+                        type="button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false"
+                    >
+                        Menu
+                    </button>
+                    <ul class="dropdown-menu w-100">
+                        <li><a class="dropdown-item" href="/listings/new">Airbnb your home</a></li>
+                        <% if (!currUser) { %>
+                            <li><a class="dropdown-item" href="/signup">Sign up</a></li>
+                            <li><a class="dropdown-item" href="/login">Log in</a></li>
+                        <% } %>
+                        <% if (currUser) { %>
+                            <li><a class="dropdown-item" href="/logout">Log out</a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
